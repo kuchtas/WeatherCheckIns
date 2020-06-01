@@ -17,13 +17,9 @@ app.post('/api', (request, response) => {
     const timestamp = Date.now();
     data.timestamp = timestamp || "unknown";
     console.log(data);
-<<<<<<< HEAD
     database.remove({ coordinates: data.coordinates }, { multi: true });
     database.insert(data);
     database.persistence.compactDatafile();
-=======
-    database.update({ coordinates: data.coordinates, }, { $set: { ...data } }, { upsert: true })
->>>>>>> parent of 3a79682... Removing unnecessary documents from database
 
     response.json({
         status: 'success',
