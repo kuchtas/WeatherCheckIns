@@ -15,19 +15,6 @@ async function getData() {
         Temperature: ${item.temp}&deg;C (feels like ${item.feels_like}&deg;C)`
 
         marker.bindPopup(markerText);
-        /*const root = document.createElement('div');
-        const date = document.createElement('ul');
-        const lat = document.createElement('li');
-        const long = document.createElement('li');
-
-        lat.textContent = `Latitude: ${item.lat}°`;
-        long.textContent = `Longitude: ${item.long}°`;
-        const dateString = new Date(item.timestamp).toLocaleString();   // convert the timestamp into a full date and time
-        date.textContent = `Date: ${dateString}`;
-
-        root.append(date);
-        date.append(lat, long);
-        document.body.append(root);*/
     }
 }
 
