@@ -19,21 +19,22 @@ if ('geolocation' in navigator) {
             const responseGetAPI = await fetch(`/weather/lat/${lat}/long/${long}`);
             const jsonGetAPI = await responseGetAPI.json();
             //console.log(jsonGetAPI);
-            const { name } = jsonGetAPI;
-            const { country } = jsonGetAPI.sys;
-            const { description } = jsonGetAPI.weather[0];
-            const { temp, feels_like } = jsonGetAPI.main;
-            const { speed } = jsonGetAPI.wind;
-            const clouds = jsonGetAPI.clouds.all;
-            document.getElementById("area").textContent = name + ', ' + country;
-            document.getElementById("state").textContent = description;
+            const area = jsonGetAPI.name || "unknown";
+            const country = jsonGetAPI.sys.country || "unknown";
+            const description = jsonGetAPI.weather[0].description || "unknown";
+            const temp = jsonGetAPI.main.temp || "unknown";
+            const feels_like = jsonGetAPI.main.feels_like || "unknown";
+            const speed = jsonGetAPI.wind.speed || "unknown";
+            const clouds = jsonGetAPI.clouds.all || "unknown";
+            document.getElementById("area").textContent = area + ', ' + country;
+            document.getElementById("conditions").textContent = description;
             document.getElementById("wind").textContent = speed + ' m/s';
             document.getElementById("temp").textContent = temp;
             document.getElementById("clouds").textContent = clouds;
             document.getElementById("tempFeel").textContent = feels_like;
 
             const dataForDB = {
-                coordinates: { lat, long }, name, country, description, temp, feels_like, speed, clouds
+                coordinates: { lat, long }, area, country, description, temp, feels_like, speed, clouds
             };
             const responsePostToDB = await fetch('/api', {
                 method: 'POST',

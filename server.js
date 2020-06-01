@@ -15,7 +15,7 @@ app.use(express.json());
 app.post('/api', (request, response) => { // TODO if older check in from the same place exists replace it with new?
     const data = request.body;
     const timestamp = Date.now();
-    data.timestamp = timestamp;
+    data.timestamp = timestamp || "unknown";
     console.log(data);
     database.update({ coordinates: data.coordinates, }, { $set: { ...data } }, { upsert: true })
 

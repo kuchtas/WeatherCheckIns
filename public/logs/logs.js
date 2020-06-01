@@ -7,9 +7,9 @@ async function getData() {
     for (let item of data) {
         const dateString = new Date(item.timestamp).toLocaleString();
         const marker = L.marker([item.coordinates.lat, item.coordinates.long]).addTo(mymap);
-        const markerText = `Area: ${item.name}, ${item.country}<br>
+        const markerText = `Area: ${item.area}, ${item.country}<br>
         Time: ${dateString}<br>
-        Weather: ${item.description}<br>
+        Conditions: ${item.description}<br>
         Wind: ${item.speed} m/s<br>
         Cloudiness: ${item.clouds}%<br>
         Temperature: ${item.temp}&deg;C (feels like ${item.feels_like}&deg;C)`
