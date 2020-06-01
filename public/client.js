@@ -1,6 +1,7 @@
 "use strict"
 
 let lat, long;
+const button = document.getElementById("submitButton");
 
 if ('geolocation' in navigator) {
     console.log('geolocation available');
@@ -33,23 +34,24 @@ if ('geolocation' in navigator) {
             document.getElementById("clouds").textContent = clouds;
             document.getElementById("tempFeel").textContent = feels_like;
 
-            const dataForDB = {
-                coordinates: { lat, long }, area, country, description, temp, feels_like, speed, clouds
-            };
-            const responsePostToDB = await fetch('/api', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataForDB)
+            button.addEventListener('click', async event => {
+                const dataForDB = {
+                    coordinates: { lat, long }, area, country, description, temp, feels_like, speed, clouds
+                };
+                const responsePostToDB = await fetch('/api', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataForDB)
+                });
+                const responseJSONtoDB = await responsePostToDB.json();
+                //console.log(responseJSONtoDB);
             });
-            const responseJSONtoDB = await responsePostToDB.json();
-            //console.log(responseJSONtoDB);
         }
         catch{
-            console.log('Something went wrong while fetching data from the OpenWeatherAPI');
+            console.log('Something went wrong while fetching data from the OpenWeatherAPI or to the server');
         }
-
     }, error => {
         if (error.PERMISSION_DENIED) {
             alert('Please allow geolocation and refresh the page!');

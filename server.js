@@ -38,6 +38,19 @@ app.get('/api', (request, response) => {
     })
 })
 
+app.delete('/remove', (request, response) => {
+    const data = request.body;
+    database.remove({ coordinates: data.coordinates }, { multi: true }, (err, numRemoved) => {
+        if (numRemoved > 0) {
+            database.persistence.compactDatafile();
+            response.json({ success: true });
+        }
+        else
+            response.json({ success: false });
+    });
+});
+
+
 app.get('/weather/lat/:lat/long/:long', async (request, response) => { //proxy for the OpenWeatherMaps
     const api_key = process.env.API_KEY;
     const lat = request.params.lat;
