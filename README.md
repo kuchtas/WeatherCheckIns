@@ -10,4 +10,4 @@ The project is based on Daniel Shiffman's (The Coding Train) tutorials regarding
 https://www.youtube.com/watch?v=ZtLVbJk7KcM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=16
 
 
-You can check the project and leave your own location under this link: https://weathercheckins.glitch.me
+You can check the project and leave your own location under this link: https://weathercheckin.glitch.me/
