@@ -17,7 +17,9 @@ app.post('/api', (request, response) => {
     const timestamp = Date.now();
     data.timestamp = timestamp || "unknown";
     console.log(data);
-    database.update({ coordinates: data.coordinates, }, { $set: { ...data } }, { upsert: true })
+    database.remove({ coordinates: data.coordinates }, { multi: true });
+    database.insert(data);
+
 
     response.json({
         status: 'success',
