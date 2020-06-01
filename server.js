@@ -19,7 +19,7 @@ app.post('/api', (request, response) => {
     console.log(data);
     database.remove({ coordinates: data.coordinates }, { multi: true });
     database.insert(data);
-
+    database.persistence.compactDatafile();
 
     response.json({
         status: 'success',
