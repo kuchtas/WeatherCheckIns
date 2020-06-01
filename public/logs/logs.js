@@ -31,11 +31,14 @@ async function getData() {
     }
 }
 
-const mymap = L.map('mapid').setView([52, 19], 7);
+const corner1 = L.latLng(-90, -200)
+const corner2 = L.latLng(90, 200)
+const bounds = L.latLngBounds(corner1, corner2)
+
+const mymap = L.map('mapid').setView([52, 19], 7).setMaxBounds(bounds);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 16,
     minZoom: 2,
 }).addTo(mymap);
-
 getData();
