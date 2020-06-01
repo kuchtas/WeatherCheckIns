@@ -8,3 +8,6 @@ In order for the project to work you need to specify your own OpenWeatherMap API
 
 The project is based on Daniel Shiffman's (The Coding Train) tutorials regarding Node.js and dealing with APIs, that can be found on YouTube.
 https://www.youtube.com/watch?v=ZtLVbJk7KcM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=16
+
+
+You can check the project and leave your own location under this link: https://weathercheckins.glitch.me
